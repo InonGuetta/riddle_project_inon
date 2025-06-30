@@ -1,9 +1,12 @@
+import readlineSync from 'readline-sync';
+
 class Player{
-    
+    constructor(user_name,){
+        this.user_name =  user_name;
+    }
+
 }
 
 
-// בקשת השם של המשתמש
-// למדוד זמנים של מענה על כל שאלה 
-// ונתינת ערך ממוצע
-
+// השאלה היא איך אני מקשר בין הקלאסס הזה לקלאס השני 
+// איך אני מחבר בין try and catch 

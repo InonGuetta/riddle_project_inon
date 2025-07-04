@@ -1,21 +1,21 @@
-// בזכות הספרייה הזאת ניתן להשתמש בהזנת ערך הפונקצייה
 import readlineSync from 'readline-sync';
-// import {run} from  './../services/game_services.js';
-
-
+import {Player} from './Player.js';
 import { allQ } from '../riddles/mangerRiddle.js'
 
-export default class Riddle {
-    constructor(id, name, taskDescription, correctAnswer) {
+export default class Riddle extends Player{
+
+    constructor(user_name ,id, name, taskDescription, correctAnswer) {
+        super(user_name);
         this.id = id;
         this.name = name;
         this.taskDescription = taskDescription;
         this.correctAnswer = correctAnswer;
     }
+    
 
-    // This method does bla bla bla
     ask() {
-        console.log(this.taskDescription);
+        console.log(`\n===== Hi ${this.user_name} =====
+        \n \nThe question is: ${this.taskDescription}`);
         let flag = false;
         while (!flag) {
             let user_answer = readlineSync.question('please give here you answer :');
@@ -31,8 +31,9 @@ export default class Riddle {
 
     static run() {
     let time = 0;
+    let user_name = readlineSync.question("plese insert you name ");
     for (let i = 0; i < allQ.length; i++) {
-        const to_riddle = new Riddle(allQ[i].id, allQ[i].name, allQ[i].taskDescription, allQ[i].correctAnswer);
+        const to_riddle = new Riddle(user_name,allQ[i].id, allQ[i].name, allQ[i].taskDescription, allQ[i].correctAnswer);
         const start = performance.now()
         to_riddle.ask();
         const end = performance.now()

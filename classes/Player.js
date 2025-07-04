@@ -1,5 +1,6 @@
 import readlineSync from 'readline-sync';
 
+//  צריך להיות class האב 
 export class Player{
     constructor(user_name,){
         this.user_name =  user_name;

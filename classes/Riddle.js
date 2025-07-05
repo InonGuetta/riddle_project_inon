@@ -2,7 +2,7 @@ import readlineSync from 'readline-sync';
 import {Player} from './Player.js';
 import { allQ } from '../riddles/mangerRiddle.js'
 
-export default class Riddle extends Player{
+export class Riddle extends Player{
 
     constructor(user_name ,id, name, taskDescription, correctAnswer) {
         super(user_name);
@@ -45,8 +45,3 @@ export default class Riddle extends Player{
     return (`the avg time to 1 question secondes: ${middle_time}`);
 }
 }
-console.log(Riddle.run());
-
-
-
-

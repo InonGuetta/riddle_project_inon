@@ -1,18 +1,20 @@
-import { show_all } from "./method_helps.js";
+import { show_all } from "./show_all.js";
+import { menu } from './menu.js';
+import { Riddle } from './../classes/Riddle.js';
+
+
+
 
 console.log('please insert here you choice : ');
-
 process.stdin.setEncoding('utf8');
-process.stdin.on('data', (data) => {
+menu();
+process.stdin.on('data', async (data) => {
     const input_user = data.trim();
-
-
-    // הטעות שהייתה לי פה היא שהוא לא היה מוגדר כ string אל תשכח שהוא מחזיר string 
     switch (input_user) {
         case "1":
-           show_all();
-           process.stdin.pause();
-           break;
+            console.log(`${Riddle.run()} \n`);
+            menu();
+            break;
         case "2":
             console.log('check 2');
             break;
@@ -31,13 +33,16 @@ process.stdin.on('data', (data) => {
         case "7":
             console.log('check 7');
             break;
-        case 8:
+        case "8":
             break;
-        case 9:
+        case "9":
+            console.log(`${await show_all()} \n`);
+            menu();
             break;
         case "0":
             console.log('God Bay')
             process.stdin.pause();
             break;
     }
+
 })

@@ -121,19 +121,19 @@ export class Riddle extends Player {
         console.log("\n==== Game Summary ====");
         console.log(summary);
 
+        
         const objToDB = {
             id: id_player,
             name: name_client,
             average_time_seconds: avgTimeSeconds
         };
 
-
-
-        // מה השגיאה כאן ואיך מטפלים בזה 
         async function return_data(objToDB){
             const data = await insert_db(objToDB);
         }
+
         return_data(objToDB)
+        // מופעלת פונקציית קריאה להעתקת נתונים ל json
         return JSON.stringify(objToDB);
     }
 }

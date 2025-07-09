@@ -1,2 +1,6 @@
-{"id":10,"name":"jjj","average_time_seconds":"4.6"}
-{"id":10,"name":"inono","average_time_seconds":"3.2"}
+[
+{"id":10,"name":"fff","average_time_seconds":"2.1"},
+{"id":15,"name":"fff","average_time_seconds":"2.1"},
+{"id":5,"name":"fff","average_time_seconds":"2.1"}
+]
+

@@ -39,15 +39,15 @@
 // הקוד הזה הוא של GPT
 
 import { writeFile } from 'node:fs/promises';
-import { Read } from './DALread.js'; // שים לב לסיומת .js אם אתה משתמש ב־ESM
+import { Read } from './DALread.js'; 
 
 const path = './../CLIENT/DB/db.txt';
 
 export async function Update(new_datas) {
     try {
         const old_data = await Read(); 
-        const new_data = old_data + '\n' + JSON.stringify(new_datas); // כדאי להפריד בשורה
-        await writeFile(path, new_data, 'utf8'); // ✅ await חובה כאן
+        const new_data = old_data + '\n' + JSON.stringify(new_datas); 
+        await writeFile(path, new_data, 'utf8'); 
         console.log('the update success');
         return new_data;
     } catch (e) {

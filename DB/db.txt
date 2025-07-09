@@ -1,6 +1,2 @@
-{"id":"falafel","name":"inon_guetta","time":2.2}
-{"id":1,"name":"inon","time":2.2}
-{"id":1,"name":"inon","time":2.2}
-{"id":1,"name":"inon","time":2.2}
-{"id":1,"name":"inon","time":2.2}
-{"id":1,"name":"inon","time":2.2}
+{"id":10,"name":"jjj","average_time_seconds":"4.6"}
+{"id":10,"name":"inono","average_time_seconds":"3.2"}

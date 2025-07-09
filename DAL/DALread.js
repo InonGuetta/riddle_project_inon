@@ -1,7 +1,8 @@
 import { readFile } from 'node:fs/promises';
 
-const path = './../DB/db.txt';
-//הקוד עובד כשורה 
+const path = './DB/db.txt';
+
+
 export async function Read() {
     try {
         const content = await readFile(path, 'utf8');
@@ -11,6 +12,4 @@ export async function Read() {
         console.log(e.message);
         return;
     }
-
 }
-

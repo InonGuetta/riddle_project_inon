@@ -13,7 +13,9 @@ const obj = {
 }
 
 async function run(obj) {
-    await Update(JSON.stringify(obj))
+  const x=  await Update(JSON.stringify(obj))
+    
+  
 }
 
 run(obj)

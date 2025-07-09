@@ -41,7 +41,7 @@
 import { writeFile } from 'node:fs/promises';
 import { Read } from './DALread.js'; // שים לב לסיומת .js אם אתה משתמש ב־ESM
 
-const path = './../DB/db.txt';
+const path = './../CLIENT/DB/db.txt';
 
 export async function Update(new_datas) {
     try {
@@ -55,14 +55,9 @@ export async function Update(new_datas) {
     }
 }
 
-const obj = {
-    id: 1,
-    name: "inon",
-    time: 2.2,
+
+export async function insert_db(obj) {
+    const full_data = await Update(obj);
+    // כדאי להדפיס כדי לוודא שעדכון הצליח
 }
 
-async function name(obj) {
-    const full_data = await Update(obj);
-    console.log(full_data); // כדאי להדפיס כדי לוודא שעדכון הצליח
-}
-name(obj);

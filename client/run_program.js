@@ -1,8 +1,6 @@
 import { show_all } from "./show_all.js";
 import { menu } from './menu.js';
-import { Riddle } from './../classes/Riddle.js';
-
-
+import { Riddle } from '../classes/Riddle.js';
 
 
 console.log('please insert here you choice : ');
@@ -13,22 +11,21 @@ process.stdin.on('data', async (data) => {
     switch (input_user) {
         case "1":
             console.log(`${Riddle.run()} \n`);
-            menu();
             break;
         case "2":
-            console.log('check 2');
+            console.log('Create a new riddle');
             break;
         case "3":
-            console.log('check 3');
+            console.log('Read all riddles');
             break;
         case "4":
-            console.log('check 4');
+            console.log('Update an existing riddle');
             break;
         case "5":
-            console.log('check 5');
+            console.log('Delete a riddle');
             break;
         case "6":
-            console.log('check 6');
+            console.log('View leaderboard ');
             break;
         case "7":
             console.log('check 7');

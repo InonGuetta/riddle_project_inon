@@ -1,3 +1,6 @@
-example how the DB need 
-
-[{id:1,name:"inon",time:middle_time} {id:2,name:"david",time:middle_time}]
+{"id":"falafel","name":"inon_guetta","time":2.2}
+{"id":1,"name":"inon","time":2.2}
+{"id":1,"name":"inon","time":2.2}
+{"id":1,"name":"inon","time":2.2}
+{"id":1,"name":"inon","time":2.2}
+{"id":1,"name":"inon","time":2.2}

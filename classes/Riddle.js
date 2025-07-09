@@ -40,8 +40,9 @@ export class Riddle extends Player{
         const the_time = end - start;
         time += the_time;
     }
-    // אני מנסה למדוד את הזמן האם המדידה כאן היא מדידה נכונה כמו שצריך 
-    const middle_time = (time / 1000).toFixed(1) / allQ.length;
+
+    // תסביר את השורה הזאת במדוייק 
+    const middle_time = (time /allQ.length/ 1000).toFixed(1) ;
     return (`the avg time to 1 question secondes: ${middle_time}`);
 }
 }

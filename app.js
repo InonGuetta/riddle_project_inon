@@ -1,1 +1,1 @@
-import './client/run_program.js';
+import './gameManager/run_program.js';

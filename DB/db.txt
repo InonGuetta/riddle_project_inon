@@ -1,6 +1,7 @@
-[
-{"id":10,"name":"fff","average_time_seconds":"2.1"},
-{"id":15,"name":"fff","average_time_seconds":"2.1"},
-{"id":5,"name":"fff","average_time_seconds":"2.1"}
-]
-
+{"id":"check pass2","name":"check pass2","time":"check pass2"}
+{"id":"check pass22","name":"check pass22","time":"check pass22"}
+{"id":10,"name":"non","average_time_seconds":"NaN"}
+{"id":10,"name":"nn","average_time_seconds":"12.9"}
+{"id":10,"name":"nn","average_time_seconds":"11.2"}
+{"id":10,"name":"non","average_time_seconds":"2.3"}
+{"id":10,"name":"onn","average_time_seconds":"2.5"}

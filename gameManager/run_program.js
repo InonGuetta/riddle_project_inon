@@ -2,7 +2,6 @@ import { show_all } from "./show_all.js";
 import { menu } from './menu.js';
 import { Riddle } from '../classes/Riddle.js';
 
-
 console.log('please insert here you choice : ');
 process.stdin.setEncoding('utf8');
 menu();
@@ -10,10 +9,11 @@ process.stdin.on('data', async (data) => {
     const input_user = data.trim();
     switch (input_user) {
         case "1":
+            // paly game 
             console.log(`${Riddle.run()} \n`);
             break;
         case "2":
-            console.log('Create a new riddle');
+            console.log();
             break;
         case "3":
             console.log('Read all riddles');

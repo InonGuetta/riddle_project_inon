@@ -1,18 +1,14 @@
 import { readFile } from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
+const path = '../CLIENT/DB/db.txt';
 
 export async function show_all() {
-    const filePath = path.join(__dirname, '../DB/db.txt');
     try {
-        const data = await readFile(filePath, 'utf8');
-        // console.log(data);
-        return data;
+        return await readFile(path, 'utf8');
     } catch (err) {
         console.log('eror its ', err.message);
         return;
     }
 }
+

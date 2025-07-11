@@ -1,11 +1,7 @@
 import { Create } from '../DAL/DALcreate.js';
 
-// עובד כמו שצריך 
-
+// code working
 async function run(obj){
-   await Create(JSON.stringify(obj))
+   await Create(obj)
 }
-
-
-
-
+run(obj)

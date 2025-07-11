@@ -1,9 +1,7 @@
-import { Update } from "../DAL/DALupdate";
+import { Update } from "../DAL/DALupdate.js";
 
-// הקוד לא עובד כמו שצריך 
 
 async function run(obj) {
-  const x = await Update(JSON.stringify(obj))
+  await Update(obj)
 }
-
 run(obj)

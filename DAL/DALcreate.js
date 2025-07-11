@@ -1,14 +1,14 @@
 import { writeFile } from 'node:fs/promises';
 
-const path = './../DB/db.txt';
+const path = './../CLIENT/DB/db.txt';
 
-// עובד כמו שצריך
-export async function Create(newData){
-    try{
-        await writeFile(path,newData,'utf8');
+
+export async function Create(newdata) {
+    try {
+        await writeFile(path, JSON.stringify(newdata), 'utf8');
         console.log('the data transfor success');
         return;
-    }catch(err){
+    } catch (err) {
         return err.message
     }
 }

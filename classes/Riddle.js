@@ -57,13 +57,12 @@
 //     }
 // }
 
-
-
 import readlineSync from 'readline-sync';
 import { performance } from 'node:perf_hooks';
 import { Player } from './Player.js';
-import { allQ } from '../riddles/mangerRiddle.js';
 import { insert_db } from '../DAL/DALupdate.js'
+import { all_riddle } from '../services/mangerRiddle.js'; 
+
 
 export class Riddle extends Player {
 
@@ -71,6 +70,9 @@ export class Riddle extends Player {
         super(user_name, id_player);
         this.user_name = user_name;
         this.id_player = id_player;
+
+
+
         this.id = id;
         this.name = name;
         this.taskDescription = taskDescription;
@@ -91,21 +93,24 @@ export class Riddle extends Player {
         }
     }
 
-    static run() {
+    static async run() {
         const name_client = readlineSync.question("Please insert your name: ");
-        const id_player = 10;
-
         let totalTime = 0;
 
-        for (const q of allQ) {
+        const data = await all_riddle();
+
+        let id_player = 10;
+        let counter = 0;
+        for (let i of data) {
             const riddle = new Riddle(
                 name_client,
                 id_player,
-                q.id,
-                q.name,
-                q.taskDescription,
-                q.correctAnswer
+                i.id,
+                i.name,
+                i.taskDescription,
+                i.correctAnswer
             );
+            counter ++;
 
             const start = performance.now();
             riddle.ask();
@@ -113,22 +118,21 @@ export class Riddle extends Player {
 
             totalTime += end - start;
         }
-
-        const avgTimeSeconds = (totalTime / allQ.length / 1000).toFixed(1);
+        const avgTimeSeconds = (totalTime / counter / 1000).toFixed(1);
 
         const summary = `Player ID: ${id_player}\nPlayer Name: ${name_client}\nAverage Answer Time: ${avgTimeSeconds} seconds per question.`;
 
         console.log("\n==== Game Summary ====");
         console.log(summary);
 
-        
+
         const objToDB = {
             id: id_player,
             name: name_client,
             average_time_seconds: avgTimeSeconds
         };
 
-        async function return_data(objToDB){
+        async function return_data(objToDB) {
             const data = await insert_db(objToDB);
         }
 

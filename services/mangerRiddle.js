@@ -1,13 +1,47 @@
+// on massive usses
+
+import readlineSync from 'readline-sync';
+import { writeFile } from 'fs/promises'
 import { readFile } from 'fs/promises';
 
-// code working if runnig him from here
-const path = './../CLIENT/DB/ridels.txt';
-export async function all_riddle(){
-    try{
-        const data = await readFile(path,'utf8');
+// code working if runnig ONLY FROM app.js
+const path = 'DB/ridels.txt';
+export async function all_riddle() {
+    try {
+        const data = await readFile(path, 'utf8');
         const data2 = JSON.parse(data);
         return data2;
-    }catch(e){
+    } catch (e) {
+        console.log(e.message);
+        return;
+    }
+}
+
+
+// the code working with one problem
+export async function update_riddle() {
+    try {
+        const data = await all_riddle();
+
+        console.log('hello now create new riddle: ');
+
+        const to_name = readlineSync.question('what the type of new question:  ')
+        const to_taskDescription = readlineSync.question('what is the question:  ')
+        const to_correctAnswer = readlineSync.question('the answer currect of this question:  ')
+
+        const newQuestion = {
+            id: data.length + 1,
+            // למה זה לא נקלט כמו שצריך 
+            name: to_name,
+            taskDescription: to_taskDescription,
+            correctAnswer: to_correctAnswer,
+        }
+
+        data.push(newQuestion)
+        await writeFile(path, JSON.stringify(data), 'utf8');
+        console.log('inserted is new question');
+        return'';
+    } catch (e) {
         console.log(e.message);
         return;
     }

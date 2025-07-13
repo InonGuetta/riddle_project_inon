@@ -3,20 +3,17 @@ import { Read } from './DALread.js';
 
 const path = './../CLIENT/DB/db.txt';
 
-export async function Update(path,new_datas) {
+export async function Update(new_data) {
     try {
-        const old_data = await Read(); 
-        const new_data = old_data + '\n' + JSON.stringify(new_datas); 
-        await writeFile(path, new_data, 'utf8'); 
+        const data = await Read();
+        const data_json = JSON.parse(data);
+        // const new_data = old_data + '\n' + JSON.stringify(new_datas); 
+        data_json.push(new_data);
+        await writeFile(path, JSON.stringify(data_json), 'utf8'); 
         console.log('the update success');
         return new_data;
     } catch (e) {
         return e.message;
     }
-}
-
-
-export async function insert_db(obj) {
-    const full_data = await Update(obj);
 }
 

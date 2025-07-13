@@ -1,6 +1,8 @@
 import { show_all } from "./show_all.js";
 import { menu } from './menu.js';
 import { Riddle } from '../classes/Riddle.js';
+import { all_riddle, update_riddle} from '../services/mangerRiddle.js';
+
 
 console.log('please insert here you choice : ');
 process.stdin.setEncoding('utf8');
@@ -9,14 +11,14 @@ process.stdin.on('data', async (data) => {
     const input_user = data.trim();
     switch (input_user) {
         case "1":
-            // paly game 
             console.log(`${Riddle.run()} \n`);
             break;
         case "2":
-            console.log();
+            console.log(await all_riddle(), '\n');
+            menu();
             break;
         case "3":
-            console.log('Read all riddles');
+            console.log(await update_riddle(), '\n');
             break;
         case "4":
             console.log('Update an existing riddle');

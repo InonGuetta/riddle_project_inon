@@ -1,7 +1,7 @@
 import { show_all } from "./show_all.js";
 import { menu } from './menu.js';
 import { Riddle } from '../classes/Riddle.js';
-import { all_riddle, update_riddle} from '../services/mangerRiddle.js';
+import { all_riddle, create_new_riddle} from '../services/mangerRiddle.js';
 
 
 console.log('please insert here you choice : ');
@@ -18,7 +18,7 @@ process.stdin.on('data', async (data) => {
             menu();
             break;
         case "3":
-            console.log(await update_riddle(), '\n');
+            console.log(await create_new_riddle(), '\n');
             break;
         case "4":
             console.log('Update an existing riddle');
@@ -35,7 +35,7 @@ process.stdin.on('data', async (data) => {
         case "8":
             break;
         case "9":
-            console.log(`${await show_all()} \n`);
+            console.log(await show_all() ,'\n');
             menu();
             break;
         case "0":

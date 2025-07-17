@@ -8,9 +8,9 @@ import { readFile } from 'fs/promises';
 const path = 'DB/ridels.txt';
 export async function all_riddle() {
     try {
-        const data = await readFile(path, 'utf8');
-        const data2 = JSON.parse(data);
-        return data2;
+        let data = await readFile(path, 'utf8');
+        data = JSON.parse(data);
+        return data;
     } catch (e) {
         console.log(e.message);
         return;
@@ -19,7 +19,7 @@ export async function all_riddle() {
 
 
 // the code working with one problem
-export async function update_riddle() {
+export async function create_new_riddle() {
     try {
         const data = await all_riddle();
 
@@ -32,6 +32,7 @@ export async function update_riddle() {
         const newQuestion = {
             id: data.length + 1,
             // למה זה לא נקלט כמו שצריך 
+            // הבעיה היא שצריך להקליד את זה רק אחרי שכבר הוקש כבר אנטר כלומר רפשר לשלוח את זה רק אחרי שני אנטרים
             name: to_name,
             taskDescription: to_taskDescription,
             correctAnswer: to_correctAnswer,
@@ -46,7 +47,5 @@ export async function update_riddle() {
         return;
     }
 }
-
-
 
 

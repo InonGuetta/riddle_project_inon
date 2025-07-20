@@ -1,33 +1,34 @@
 import { show_all } from "./show_all.js";
 import { menu } from './menu.js';
 import { Riddle } from '../classes/Riddle.js';
-import { all_riddle, create_new_riddle} from '../services/mangerRiddle.js';
+import { all_riddle, create_new_riddle, update_riddle, delete_riddle } from '../services/mangerRiddle.js';
+import readlineSync from 'readline-sync';
 
 
-console.log('please insert here you choice : ');
-process.stdin.setEncoding('utf8');
-menu();
-process.stdin.on('data', async (data) => {
-    const input_user = data.trim();
+
+
+let pause = false
+while (!pause) {
+    menu();
+    const input_user = readlineSync.question('please insert here you choice : ');
     switch (input_user) {
         case "1":
             console.log(`${Riddle.run()} \n`);
             break;
         case "2":
             console.log(await all_riddle(), '\n');
-            menu();
             break;
         case "3":
             console.log(await create_new_riddle(), '\n');
             break;
         case "4":
-            console.log('Update an existing riddle');
+            console.log(await update_riddle(), '\n');
             break;
         case "5":
-            console.log('Delete a riddle');
+            console.log(await delete_riddle(), "\n");
             break;
         case "6":
-            console.log('View leaderboard ');
+            console.log('check 6 ');
             break;
         case "7":
             console.log('check 7');
@@ -35,13 +36,11 @@ process.stdin.on('data', async (data) => {
         case "8":
             break;
         case "9":
-            console.log(await show_all() ,'\n');
-            menu();
+            console.log(await show_all(), '\n');
             break;
         case "0":
             console.log('God Bay')
-            process.stdin.pause();
+            pause = true
             break;
     }
-
-})
+}

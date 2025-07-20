@@ -1,10 +1,10 @@
-// on massive usses
-
 import readlineSync from 'readline-sync';
 import { writeFile } from 'fs/promises'
 import { readFile } from 'fs/promises';
 
-// code working if runnig ONLY FROM app.js
+//need runnig its ONLY FROM app.js
+
+// code working fix 
 const path = 'DB/ridels.txt';
 export async function all_riddle() {
     try {
@@ -16,9 +16,21 @@ export async function all_riddle() {
         return;
     }
 }
+//===============================================================
 
+// code working fix
+export async function list_id() {
+    const data =  await all_riddle();
+    const id_of_riddles = []
 
-// the code working with one problem
+    data.forEach(item =>{
+        id_of_riddles.push(item.id)
+    })
+    return id_of_riddles;  
+}
+
+//===============================================================
+// the code working fix
 export async function create_new_riddle() {
     try {
         const data = await all_riddle();
@@ -31,8 +43,6 @@ export async function create_new_riddle() {
 
         const newQuestion = {
             id: data.length + 1,
-            // למה זה לא נקלט כמו שצריך 
-            // הבעיה היא שצריך להקליד את זה רק אחרי שכבר הוקש כבר אנטר כלומר רפשר לשלוח את זה רק אחרי שני אנטרים
             name: to_name,
             taskDescription: to_taskDescription,
             correctAnswer: to_correctAnswer,
@@ -41,11 +51,61 @@ export async function create_new_riddle() {
         data.push(newQuestion)
         await writeFile(path, JSON.stringify(data), 'utf8');
         console.log('inserted is new question');
-        return'';
+        return '';
     } catch (e) {
         console.log(e.message);
         return;
     }
 }
 
+//===============================================================
 
+export async function update_riddle() {
+    try {
+        const id_riddle = await list_id();
+
+        const data_riddle = await all_riddle();
+        const to_change = Number(readlineSync.question("Select which riddle you want to change by the riddle ID."));
+        
+        if(!data_riddle.includes(to_change)) return 'we are sorry but this id no exists '
+
+        console.log("now you change the.... ")
+        const new_name = readlineSync.question("what the new name of the riddle ");
+        const new_taskDescription = readlineSync.question("what the new task Description of the riddle ");
+        const new_correctAnswer = readlineSync.question("the new correct answer ");
+
+        data_riddle.forEach(item => {
+            if (item.id == to_change) {
+                if (new_name.trim() !== "") item.name = new_name;
+                if (new_taskDescription.trim() !== "") item.taskDescription = new_taskDescription;
+                if (new_correctAnswer.trim() !== "") item.correctAnswer = new_correctAnswer;
+            }
+        });
+        await writeFile(path, JSON.stringify(data_riddle), 'utf8')
+        console.log("the update riddle successfuly ");
+        return "";
+    } catch (e) {
+        console.log(e.message);
+    }
+}
+
+//===============================================================
+
+
+// the code working fix
+export async function delete_riddle() {
+    try {
+        const data = await list_id();
+        let data_riddle = await all_riddle();
+        const id_remove = Number(readlineSync.question("what the riddle you wanna reomve "))
+
+        if(!data.includes(id_remove)) return "we are sorry but this id no exists ";
+
+        const update_after_remove_riddle = data_riddle.filter(item => item.id !== id_remove)
+        await writeFile(path, JSON.stringify(update_after_remove_riddle),'utf8');
+        console.log("remove successfuly");
+        return '';
+    } catch (e) {
+        console.log(e.message);
+    }
+}

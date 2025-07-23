@@ -1,1 +1,4 @@
-"# new_repo_riddle" 
+# Riddle Game
+*Author: Inon Guetta*
+*Lead Instructor: Ishay*
+

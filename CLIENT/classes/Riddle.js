@@ -4,7 +4,7 @@ import { Player } from './Player.js';
 import { Update } from '../DAL/DALupdate.js'
 import { Read } from '../DAL/DALread.js';
 import { all_riddle } from '../services/mangerRiddle.js';
-import { sendToServer } from '../services/api.js';
+// import { sendToServer } from '../services/api.js';
 
 export class Riddle extends Player {
 
@@ -12,7 +12,6 @@ export class Riddle extends Player {
         super(user_name, id_player);
         this.user_name = user_name;
         this.id_player = id_player;
-
 
 
         this.id = id;
@@ -42,7 +41,6 @@ export class Riddle extends Player {
         const data = await all_riddle();
         const toPlayerTxt = await Read();
         const toPlayer = JSON.parse(toPlayerTxt);
-        // אני חושד כי הוספת שורת הקוד הזה הוא יוצר את הבעיה 
         const id_player = toPlayer.length + 1;
         let counter = 0;
         for (let i of data) {
@@ -75,8 +73,8 @@ export class Riddle extends Player {
             average_time_seconds: avgTimeSeconds
         };
 
-        await sendToServer(objToDB)
-        // await Update(objToDB)
+        // await sendToServer(objToDB)
+        await Update(objToDB)
         return JSON.stringify(objToDB);
     }
 }

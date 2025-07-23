@@ -1,8 +1,6 @@
 const path = '../DB/ridels.txt';
 import { readFile, writeFile } from 'fs/promises';
 
-//======================================================
-// read
 async function all_riddle() {
     try {
         let data = await readFile(path, 'utf8');
@@ -14,23 +12,16 @@ async function all_riddle() {
     }
 }
 
-
-//======================================================
-
 server.get('/get', async (req, res) => {
-
     const data_riddle = await all_riddle()
     console.log(data_riddle);
     res.json(data_riddle);
 })
 
-//======================================================
-// create
 server.post('/post', async (req, res) => {
     async function create_new_riddle() {
         try {
             const data_riddle = await all_riddle();
-
             console.log('hello now add new riddle: ');
 
             let newQuestion = req.body;
@@ -47,14 +38,11 @@ server.post('/post', async (req, res) => {
     console.log(await create_new_riddle());
 })
 
-//===================================================
-// update 
 server.post('/update', async (req, res) => {
     try {
 
         let data = await all_riddle()
         let new_data_riddle = req.body;
-
         const check = Number(new_data_riddle.id);
 
         if (!data.some(item => Number(item.id) == check)) {
@@ -76,8 +64,6 @@ server.post('/update', async (req, res) => {
     }
 })
 
-//===================================================
-// delete
 server.delete('/delete/:id', async (req, res) => {
     try {
         let data = await all_riddle();
@@ -85,18 +71,12 @@ server.delete('/delete/:id', async (req, res) => {
 
         const exsist = data.some(item => Number(item.id) === to_delete_by_id)
 
-        if(!exsist)return res.status(404).send('id not exsist')
+        if (!exsist) return res.status(404).send('id not exsist')
 
         const new_data = data.filter(item => Number(item.id) !== to_delete_by_id);
-        await writeFile(path,JSON.stringify(new_data),'utf8') 
+        await writeFile(path, JSON.stringify(new_data), 'utf8')
         res.send('delete successfuly')
     } catch (e) {
         console.error(e.message);
     }
 })
-
-
-//===================================================
-
-
-

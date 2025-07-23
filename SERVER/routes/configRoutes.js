@@ -8,8 +8,17 @@ export default function config(app) {
 
     app.get("/riddles", async (req, res) => {
         console.log("in configRoutes...");
-        const riddles = await getAllRiddles();
-        res.json(riddles);
+
+        try {
+            await getAllRiddles(req, res);
+        } catch (error) {
+            console.error("Error in /riddles route:", error);
+            res.status(500).json({ error: "Failed to fetch riddles" });
+        }
+        
+
+        // const riddles = await getAllRiddles();
+        // res.json(riddles);
     });
 
     app.use((req, res) => {

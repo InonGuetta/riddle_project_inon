@@ -29,3 +29,22 @@ my-express-app/
 ├── .env
 ├── package.json
 └── README.md
+
+
+Client Request
+    ↓
+Express app (app.js)
+    ↓
+app.use('/api', routes)
+    ↓
+Router file (e.g. routes/users.route.js)
+    ↓
+Controller (e.g. controllers/users.controller.js)
+    ↓
+Service (e.g. services/user.service.js)
+    ↓
+Model / DB Layer (e.g. models/user.model.js)
+    ↓
+Database (MongoDB, PostgreSQL, etc.)
+    ↑
+Response travels back up the chain

@@ -1,82 +1,95 @@
-const path = '../DB/ridels.txt';
-import { readFile, writeFile } from 'fs/promises';
+import { fetchAllRiddles } from '../services/riddles.service.js';
 
-async function all_riddle() {
+export const getAllRiddles = async (req, res) => {
+    if (!res) {
+        throw new Error("Response object 'res' is undefined. Make sure to use getAllRiddles as an Express route handler, e.g., app.get('/riddles', getAllRiddles)");
+    }
     try {
-        let data = await readFile(path, 'utf8');
-        data = JSON.parse(data);
-        return data;
-    } catch (e) {
-        console.log(e.message);
-        return;
+        const riddles = await fetchAllRiddles();
+        res.status(200).json(riddles);
+    } catch (error) {
+        console.error("Error fetching riddles:", error);
+        res.status(500).json({ error: "Failed to fetch riddles" });
     }
-}
+};
 
-server.get('/get', async (req, res) => {
-    const data_riddle = await all_riddle()
-    console.log(data_riddle);
-    res.json(data_riddle);
-})
 
-server.post('/post', async (req, res) => {
-    async function create_new_riddle() {
-        try {
-            const data_riddle = await all_riddle();
-            console.log('hello now add new riddle: ');
+// async function all_riddle() {
+//     try {
+//         let data = await readFile(path, 'utf8');
+//         data = JSON.parse(data);
+//         return data;
+//     } catch (e) {
+//         console.log(e.message);
+//         return;
+//     }
+// }
 
-            let newQuestion = req.body;
+// server.get('/get', async (req, res) => {
+//     const data_riddle = await all_riddle()
+//     console.log(data_riddle);
+//     res.json(data_riddle);
+// })
 
-            data_riddle.push(newQuestion)
-            await writeFile(path, JSON.stringify(data_riddle), 'utf8');
-            console.log('inserted is new question');
-            return '';
-        } catch (e) {
-            console.log(e.message);
-            return;
-        }
-    }
-    console.log(await create_new_riddle());
-})
+// server.post('/post', async (req, res) => {
+//     async function create_new_riddle() {
+//         try {
+//             const data_riddle = await all_riddle();
+//             console.log('hello now add new riddle: ');
 
-server.post('/update', async (req, res) => {
-    try {
+//             let newQuestion = req.body;
 
-        let data = await all_riddle()
-        let new_data_riddle = req.body;
-        const check = Number(new_data_riddle.id);
+//             data_riddle.push(newQuestion)
+//             await writeFile(path, JSON.stringify(data_riddle), 'utf8');
+//             console.log('inserted is new question');
+//             return '';
+//         } catch (e) {
+//             console.log(e.message);
+//             return;
+//         }
+//     }
+//     console.log(await create_new_riddle());
+// })
 
-        if (!data.some(item => Number(item.id) == check)) {
-            return res.status(403).send('we are sorry but its id not exsist');
-        }
+// server.post('/update', async (req, res) => {
+//     try {
 
-        data.forEach(item => {
-            if (item.id == new_data_riddle.id) {
-                item.name = new_data_riddle.name,
-                    item.taskDescription = new_data_riddle.taskDescription,
-                    item.correctAnswer = new_data_riddle.correctAnswer
-            }
-        });
+//         let data = await all_riddle()
+//         let new_data_riddle = req.body;
+//         const check = Number(new_data_riddle.id);
 
-        await writeFile(path, JSON.stringify(data), 'utf8');
-        res.send('updated successfully');
-    } catch (e) {
-        console.error(e.message);
-    }
-})
+//         if (!data.some(item => Number(item.id) == check)) {
+//             return res.status(403).send('we are sorry but its id not exsist');
+//         }
 
-server.delete('/delete/:id', async (req, res) => {
-    try {
-        let data = await all_riddle();
-        const to_delete_by_id = Number(req.params.id);
+//         data.forEach(item => {
+//             if (item.id == new_data_riddle.id) {
+//                 item.name = new_data_riddle.name,
+//                     item.taskDescription = new_data_riddle.taskDescription,
+//                     item.correctAnswer = new_data_riddle.correctAnswer
+//             }
+//         });
 
-        const exsist = data.some(item => Number(item.id) === to_delete_by_id)
+//         await writeFile(path, JSON.stringify(data), 'utf8');
+//         res.send('updated successfully');
+//     } catch (e) {
+//         console.error(e.message);
+//     }
+// })
 
-        if (!exsist) return res.status(404).send('id not exsist')
+// server.delete('/delete/:id', async (req, res) => {
+//     try {
+//         let data = await all_riddle();
+//         const to_delete_by_id = Number(req.params.id);
 
-        const new_data = data.filter(item => Number(item.id) !== to_delete_by_id);
-        await writeFile(path, JSON.stringify(new_data), 'utf8')
-        res.send('delete successfuly')
-    } catch (e) {
-        console.error(e.message);
-    }
-})
+//         const exsist = data.some(item => Number(item.id) === to_delete_by_id)
+
+//         if (!exsist) return res.status(404).send('id not exsist')
+
+//         const new_data = data.filter(item => Number(item.id) !== to_delete_by_id);
+//         await writeFile(path, JSON.stringify(new_data), 'utf8')
+//         res.send('delete successfuly')
+//     } catch (e) {
+//         console.error(e.message);
+//     }
+// })

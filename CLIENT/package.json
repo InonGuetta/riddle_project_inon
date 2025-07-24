@@ -1,6 +1,10 @@
 {
   "type": "module",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
+    "mysql2": "^3.14.2",
     "readline-sync": "^1.4.10",
     "uuid": "^11.1.0"
   }

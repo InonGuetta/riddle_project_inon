@@ -13,7 +13,8 @@ while (!pause) {
     const input_user = readlineSync.question('please insert here you choice : ');
     switch (input_user) {
         case "1":
-            console.log(`${Riddle.run()} \n`);
+            // מה הבעיה כאן 
+            console.log(`${await Riddle.run()} \n`);
             break;
         case "2":
             console.log(await all_riddle(), '\n');

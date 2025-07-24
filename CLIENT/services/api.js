@@ -18,3 +18,6 @@ export async function sendToServer(new_data){
         
     }
 }
+
+
+

@@ -4,7 +4,7 @@ import { Player } from './Player.js';
 import { Update } from '../DAL/DALupdate.js'
 import { Read } from '../DAL/DALread.js';
 import { all_riddle } from '../services/mangerRiddle.js';
-// import { sendToServer } from '../services/api.js';
+import { sendToServer } from '../services/api.js';
 
 export class Riddle extends Player {
 
@@ -73,8 +73,9 @@ export class Riddle extends Player {
             average_time_seconds: avgTimeSeconds
         };
 
-        // await sendToServer(objToDB)
+        // 
         await Update(objToDB)
-        return JSON.stringify(objToDB);
+        return await sendToServer(objToDB)
+        // return JSON.stringify(objToDB);
     }
 }

@@ -15,7 +15,7 @@ export async function fetchAllRiddles() {
 export async function createRiddle(riddle) {
     try {
         const result = await db.collection("riddles").insertOne(riddle);
-        return result.insertedId; // או תחזיר את האובייקט אם תרצה
+        return result.insertedId; 
     } catch (err) {
         console.error(`Error creating riddle: ${err}`);
         throw new Error("Could not insert new riddle");

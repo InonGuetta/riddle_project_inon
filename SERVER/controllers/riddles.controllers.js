@@ -12,14 +12,13 @@ export async function getAllRiddles(req, res) {
 
 export async function addRiddle(req, res) {
     try {
-        const { id, name, taskDescription, correctAnswer } = req.body;
-        // אפשרות: לוודא שכל השדות קיימים
-        if (!id || !name || !taskDescription || !correctAnswer) {
-            return res.status(400).json({ msg: "Missing fields in riddle" });
+        const { name, taskDescription, correctAnswer } = req.body;
+        if (!name || !taskDescription || !correctAnswer) {
+            return res.status(400).json({ msg: "All fields are required." });
         }
-        const newRiddle = { id, name, taskDescription, correctAnswer };
-        const insertedId = await createRiddle(newRiddle);
-        res.status(201).json({ msg: "Riddle created", id: insertedId });
+
+        const newRiddle = await createRiddle({ name, taskDescription, correctAnswer});
+        res.status(201).json(newRiddle);
     } catch (error) {
         console.error("Error adding riddle:", error.message);
         res.status(500).json({ msg: "Server error. Please try again later." });

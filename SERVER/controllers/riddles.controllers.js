@@ -1,8 +1,8 @@
-import { createRiddle, readAllReaddles } from "../DAL/riddels.communication.js";
+import { createRiddle, fetchAllRiddles } from "../DAL/riddels.js";
 
 export async function getAllRiddles(req, res) {
     try {
-        const data = await readAllReaddles();
+        const data = await fetchAllRiddles();
         res.json(data);
     } catch (error) {
         console.error("Error getting riddles:", error.message);

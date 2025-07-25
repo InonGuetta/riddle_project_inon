@@ -1,8 +1,7 @@
-import { connect } from "../config/db.riddles.config.js"
+import { connect } from "../config/mongo.config.js"
 const db = await connect()
 
-
-export async function readAllReaddles() {
+export async function fetchAllRiddles() {
     try {
         const data = await db.collection("riddles").find().toArray()
         console.log(data);
@@ -12,7 +11,6 @@ export async function readAllReaddles() {
         throw new Error("Could not retrieve readdles from the database")
     }
 }
-
 
 export async function createRiddle(riddle) {
     try {

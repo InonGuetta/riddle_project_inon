@@ -1,5 +1,5 @@
-import {config} from "dotenv"
-import {MongoClient,Db} from "mongodb"
+import { config } from "dotenv"
+import { MongoClient, Db } from "mongodb"
 config()
 // חיבור ל db של mongo 
 // אין שום התעסקות איתו מעבר לכך
@@ -15,10 +15,10 @@ let db = null;
  */
 
 export async function connect() {
-    if(!db){
+    if (!db) {
         await client.connect()
-        db = client.db("new_dataBase");
+        db = client.db("db");
         console.log("Connected to MongoDB");
     }
-    return db;
+    return db;
 }

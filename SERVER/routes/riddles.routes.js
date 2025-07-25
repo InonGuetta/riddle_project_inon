@@ -4,7 +4,8 @@ import { getAllRiddles, addRiddle } from "../controllers/riddles.controllers.js"
 const router = express.Router();
 
 router.get("/riddles", getAllRiddles);
+// not working
+router.post("/add-riddle", addRiddle);
 
-router.post("/", addRiddle);
 
 export default router;

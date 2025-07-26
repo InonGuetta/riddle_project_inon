@@ -1,8 +1,7 @@
 import { config } from "dotenv"
 import { MongoClient, Db } from "mongodb"
 config()
-// חיבור ל db של mongo 
-// אין שום התעסקות איתו מעבר לכך
+
 const client = new MongoClient(process.env.URL_MONGO)
 
 /**

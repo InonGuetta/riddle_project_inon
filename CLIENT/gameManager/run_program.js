@@ -1,9 +1,9 @@
-import { show_all } from "./show_all.js";
+// import { show_all } from "./show_all.js";
 import { menu } from './menu.js';
 import { Riddle } from '../classes/Riddle.js';
 import { insert_new_riddle_to_db, update_riddle_to_mongo, delete_riddle_form_mongo } from '../services/mangerRiddle.js';
 import readlineSync from 'readline-sync';
-import { getRiddle } from '../services/api.js';
+import { getRiddle, allPlayers } from '../services/api.js';
 
 
 // TODO: change function names to camel case
@@ -36,7 +36,7 @@ while (!pause) {
         case "8":
             break;
         case "9":
-            console.log(await show_all(), '\n');
+            console.log(await allPlayers(), '\n');
             break;
         case "0":
             console.log('God Bay')

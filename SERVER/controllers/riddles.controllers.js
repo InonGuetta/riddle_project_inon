@@ -38,9 +38,6 @@ export async function deleteRiddle(req, res) {
     }
 }
 
-
-
-
 export async function updateRiddle(req, res) {
     const { id, name, taskDescription, correctAnswer } = req.body;
 
@@ -50,7 +47,7 @@ export async function updateRiddle(req, res) {
     console.log("correctAnswer:", correctAnswer);
 
     const newRiddle = await updateRiddleById(id, { name, correctAnswer, taskDescription });
-    // console.log("newRiddle:", newRiddle);
+    res.json({ message: "Riddle updated" });
 }
 
 

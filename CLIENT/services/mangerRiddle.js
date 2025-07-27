@@ -1,9 +1,7 @@
 import readlineSync from 'readline-sync';
 import { insert_new_riddle, delete_riddle, updateRiddle } from './api.js';
-// import { updateRiddle } from '../services/riddles.js';
 
 
-// the code working white mongo
 export async function insert_new_riddle_to_db() {
     try {
 
@@ -29,7 +27,6 @@ export async function insert_new_riddle_to_db() {
     }
 }
 
-//===============================================================
 
 export async function update_riddle_to_mongo() {
     try {
@@ -48,7 +45,6 @@ export async function update_riddle_to_mongo() {
     }
 }
 
-// the code working fix white mongo
 export async function delete_riddle_form_mongo() {
     try {
         const remove_by_question = readlineSync.question("please insert the taskDescription you want remove: ")

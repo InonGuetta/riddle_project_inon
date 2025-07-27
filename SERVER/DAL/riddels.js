@@ -36,22 +36,6 @@ export async function deleteRiddleByQuestion(riddleToDelete) {
     }
 }
 
-// export async function updateRiddleByQuestion(taskDescription, newRiddle) {
-//     try {
-//         const result = await db.collection("riddles").updateOne(
-//             { taskDescription },
-//             { $set: newRiddle }
-//         );
-//         if (result.matchedCount === 0) {
-//             throw new Error("the riddle not found");
-//         }
-//         return result;
-//     } catch (err) {
-//         console.error(`Error update riddle: ${err}`);
-//         throw new Error("Could not update the riddle");
-//     }
-// }
-
 export async function updateRiddleById(id, newRiddle) {
     try {
         const result = await db.collection("riddles").updateOne(

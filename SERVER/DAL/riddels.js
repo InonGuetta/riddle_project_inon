@@ -1,4 +1,5 @@
 import { connect } from "../config/mongo.config.js"
+import { ObjectId } from "mongodb";
 const db = await connect()
 
 export async function fetchAllRiddles() {
@@ -35,10 +36,26 @@ export async function deleteRiddleByQuestion(riddleToDelete) {
     }
 }
 
-export async function updateRiddleByQuestion(taskDescription, newRiddle) {
+// export async function updateRiddleByQuestion(taskDescription, newRiddle) {
+//     try {
+//         const result = await db.collection("riddles").updateOne(
+//             { taskDescription },
+//             { $set: newRiddle }
+//         );
+//         if (result.matchedCount === 0) {
+//             throw new Error("the riddle not found");
+//         }
+//         return result;
+//     } catch (err) {
+//         console.error(`Error update riddle: ${err}`);
+//         throw new Error("Could not update the riddle");
+//     }
+// }
+
+export async function updateRiddleById(id, newRiddle) {
     try {
         const result = await db.collection("riddles").updateOne(
-            { taskDescription },
+            { _id: new ObjectId(id) },
             { $set: newRiddle }
         );
         if (result.matchedCount === 0) {
@@ -46,7 +63,7 @@ export async function updateRiddleByQuestion(taskDescription, newRiddle) {
         }
         return result;
     } catch (err) {
-        console.error(`Error update riddle: ${err}`);
+        console.error(`Error updating riddle: ${err}`);
         throw new Error("Could not update the riddle");
     }
 }

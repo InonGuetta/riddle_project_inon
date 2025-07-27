@@ -3,8 +3,7 @@ import { menu } from './menu.js';
 import { Riddle } from '../classes/Riddle.js';
 import { insert_new_riddle_to_db, update_riddle_to_mongo, delete_riddle_form_mongo } from '../services/mangerRiddle.js';
 import readlineSync from 'readline-sync';
-import { get_all_riddle } from '../services/api.js';
-
+import { getRiddle } from '../services/api.js';
 
 
 // TODO: change function names to camel case
@@ -17,7 +16,7 @@ while (!pause) {
             console.log(`${await Riddle.run()} \n`);
             break;
         case "2":
-            console.log(await get_all_riddle(), '\n');
+            console.log(await getRiddle(), '\n');
             break;
         case "3":
             console.log(await insert_new_riddle_to_db(), '\n');

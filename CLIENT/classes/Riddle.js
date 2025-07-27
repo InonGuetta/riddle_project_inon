@@ -3,7 +3,7 @@ import { performance } from 'node:perf_hooks';
 import { Player } from './Player.js';
 import { Update } from '../DAL/DALupdate.js'
 import { Read } from '../DAL/DALread.js';
-import { sendPlayerToServer, get_all_riddle } from '../services/api.js';
+import { sendPlayerToServer, getRiddle } from '../services/api.js';
 
 
 export class Riddle extends Player {

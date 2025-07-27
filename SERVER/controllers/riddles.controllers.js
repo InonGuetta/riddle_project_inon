@@ -1,4 +1,4 @@
-import { createRiddle, fetchAllRiddles, deleteRiddleByQuestion, updateRiddleByQuestion } from "../DAL/riddels.js";
+import { createRiddle, fetchAllRiddles, deleteRiddleByQuestion, updateRiddleById } from "../DAL/riddels.js";
 
 export async function getAllRiddles(req, res) {
     try {
@@ -42,20 +42,15 @@ export async function deleteRiddle(req, res) {
 
 
 export async function updateRiddle(req, res) {
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    
-    try {
-        const { oldTaskDescription, name, newTaskDescription, correctAnswer } = req.body;
-        if (!oldTaskDescription || !newTaskDescription) {
-            return res.status(400).json({ msg: "taskDescription not found" });
-        }
+    const { id, name, taskDescription, correctAnswer } = req.body;
 
-        const newRiddle = await updateRiddleByQuestion(oldTaskDescription, { name, correctAnswer, taskDescription: newTaskDescription });
+    console.log("id:", id);
+    console.log("name:", name);
+    console.log("taskDescription:", taskDescription);
+    console.log("correctAnswer:", correctAnswer);
 
-
-        res.status(200).json({ msg: "Riddle updated successfully", newRiddle });
-    } catch (error) {
-        console.error("Error updating riddle,", error.message);
-        res.status(500).json({ msg: "server error. please try again later." })
-    }
+    const newRiddle = await updateRiddleById(id, { name, correctAnswer, taskDescription });
+    // console.log("newRiddle:", newRiddle);
 }
+
+

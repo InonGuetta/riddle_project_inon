@@ -1,7 +1,7 @@
 import { show_all } from "./show_all.js";
 import { menu } from './menu.js';
 import { Riddle } from '../classes/Riddle.js';
-import { all_riddle, create_new_riddle, update_riddle, delete_riddle } from '../services/mangerRiddle.js';
+import { all_riddle, insert_new_riddle_to_db, update_riddle, delete_riddle } from '../services/mangerRiddle.js';
 import readlineSync from 'readline-sync';
 
 
@@ -20,7 +20,7 @@ while (!pause) {
             console.log(await all_riddle(), '\n');
             break;
         case "3":
-            console.log(await create_new_riddle(), '\n');
+            console.log(await insert_new_riddle_to_db(), '\n');
             break;
         case "4":
             console.log(await update_riddle(), '\n');

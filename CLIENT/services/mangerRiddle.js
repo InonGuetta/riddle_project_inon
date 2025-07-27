@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 import { writeFile } from 'fs/promises'
 import { readFile } from 'fs/promises';
+import {insert_new_riddle} from './api.js';
 
 //need runnig its ONLY FROM app.js
 
@@ -30,10 +31,9 @@ export async function list_id() {
 }
 
 //===============================================================
-// the code working fix
-export async function create_new_riddle() {
+// the code working white mongo
+export async function insert_new_riddle_to_db() {
     try {
-        const data = await all_riddle();
 
         console.log('hello now create new riddle: ');
 
@@ -42,15 +42,14 @@ export async function create_new_riddle() {
         const to_correctAnswer = readlineSync.question('the answer currect of this question:  ')
 
         const newQuestion = {
-            id: data.length + 1,
             name: to_name,
             taskDescription: to_taskDescription,
             correctAnswer: to_correctAnswer,
         }
 
-        data.push(newQuestion)
-        await writeFile(path, JSON.stringify(data), 'utf8');
-        console.log('inserted is new question');
+
+        await insert_new_riddle(newQuestion);
+        console.log('inserted is new question to db mongo');
         return '';
     } catch (e) {
         console.log(e.message);

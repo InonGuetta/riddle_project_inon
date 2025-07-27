@@ -1,3 +1,5 @@
+import { fetchRiddles, updateRiddleCall } from '../api/riddles.js';
+
 // TODO: change thr name of the function
 export async function sendPlayerToServer(new_data) {
     try {
@@ -35,20 +37,8 @@ export async function insert_new_riddle(new_riddle) {
     }
 }
 
-export async function get_all_riddle() {
-    try {
-        const response = await fetch("http://localhost:3000/riddles", {
-            method: 'GET',
-        })
-        console.log(response);
-        if (!response.ok) {
-            throw new Error(`server error ${response.status}`);
-        }
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        console.error(e);
-    }
+export async function getRiddle() {
+    return await fetchRiddles();
 }
 
 export async function delete_riddle(taskDescriptionToDelete) {
@@ -69,16 +59,6 @@ export async function delete_riddle(taskDescriptionToDelete) {
     }
 }
 
-export async function update_riddle(taskDescriptionToaChange,{name, newTaskDescription, correctAnswer}) {
-    try {
-        const response = await fetch("http://localhost:3000//update-riddle", {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ taskDescriptionToaChange:{name, newTaskDescription, correctAnswer }})
-        })
-    } catch (e) {
-        console.error(e);
-    }
+export async function updateRiddle (updatedRiddle) {
+    return await updateRiddleCall(updatedRiddle);
 }

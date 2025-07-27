@@ -3,8 +3,8 @@ import { performance } from 'node:perf_hooks';
 import { Player } from './Player.js';
 import { Update } from '../DAL/DALupdate.js'
 import { Read } from '../DAL/DALread.js';
-import { all_riddle } from '../services/mangerRiddle.js';
-import { sendToServer } from '../services/api.js';
+import { sendPlayerToServer, get_all_riddle } from '../services/api.js';
+
 
 export class Riddle extends Player {
 
@@ -38,7 +38,7 @@ export class Riddle extends Player {
         const name_client = readlineSync.question("Please insert your name: ");
         let totalTime = 0;
 
-        const data = await all_riddle();
+        const data = await get_all_riddle();
         const toPlayerTxt = await Read();
         const toPlayer = JSON.parse(toPlayerTxt);
         const id_player = toPlayer.length + 1;
@@ -73,9 +73,7 @@ export class Riddle extends Player {
             average_time_seconds: avgTimeSeconds
         };
 
-        // 
         await Update(objToDB)
-        return await sendToServer(objToDB)
-        // return JSON.stringify(objToDB);
+        return await sendPlayerToServer(objToDB)
     }
 }
